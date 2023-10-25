@@ -1,5 +1,5 @@
 body {
-    background-color: #dbedf9;
+    background-color: #6affa8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 50px;
     font-size: 18px;
-    color: #333;
+    color: #fd1616;
   }
   
   .button-container {

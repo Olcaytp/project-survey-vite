@@ -2,7 +2,8 @@
 import { useState } from "react";
 import "../App.css";
 import { Thanks } from "./Thanks";
-
+import { Name } from "./Name";
+import { Age } from "./Age";
 export const MainForm = () => {
   // Define state variables
   const [formData, setFormData] = useState({
@@ -39,7 +40,7 @@ export const MainForm = () => {
   //Function for validating the step
   const validateStep = (step) => {
     switch (step) {
-      case 1:
+      case 1: 
         return formData.name.trim().length >= 3;
       case 2: {
         const age = parseInt(formData.age, 10);
@@ -105,6 +106,43 @@ export const MainForm = () => {
                   <button onClick={startSurvey}>Start survey</button>
                 </div>
               </div>
+            )}
+            {currentStep !== 0 && (
+              <>
+                {currentStep === 1 && (
+                  <Name value={formData.name} updateFormData={updateFormData} />
+                )}
+                {currentStep === 2 && (
+                  <Age value={formData.age} updateFormData={updateFormData} />
+                )}
+                {/*{currentStep === 3 && (
+                  <Email value={formData.email} updateFormData={updateFormData} />
+                )}
+                {currentStep === 4 && (
+                  <Potato value={formData.potato} updateFormData={updateFormData} />
+                )}
+                {currentStep === 5 && (
+                  <Trust value={formData.trust} updateFormData={updateFormData} />
+                )}
+                {currentStep === 6 && (
+                  <Movie value={formData.movie} updateFormData={updateFormData} />
+                )}*/}
+                <div>
+                  {currentStep > 1 && <button onClick={prevStep}>Back</button>}
+                  {currentStep < 6 ? (
+                    <button onClick={nextStep} disabled={!validateStep(currentStep)}>
+                      Next
+                    </button>
+                  ) : (
+                    <button onClick={submitForm} disabled={!validateStep(currentStep)}>
+                      Submit
+                    </button>
+                  )}
+                  {currentStep === 6 && (
+                    <button onClick={restartSurvey}>Restart</button>
+                  )}
+                </div>
+              </>
             )}
         </div>
       </>
