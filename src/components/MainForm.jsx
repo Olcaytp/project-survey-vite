@@ -6,6 +6,10 @@ import { Name } from "./Name";
 import { Age } from "./Age";
 import { Email } from "./Email";
 import { City } from "./City";
+import { Course } from "./Course";
+import { Team } from "./Team";
+import { Rate } from "./Rate";
+import { Progressbar } from "./Progressbar";
 
 export const MainForm = () => {
   // Define state variables
@@ -14,9 +18,9 @@ export const MainForm = () => {
     age: "",
     email: "",
     city: "",
-    job: "",
     team: "",
-    favmovie: "",
+    course: "",
+    rate: "",
   });
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -30,7 +34,7 @@ export const MainForm = () => {
 
   //Function for the next step
   const nextStep = () => {
-    if (currentStep < 6 && validateStep(currentStep)) {
+    if (currentStep < 7 && validateStep(currentStep)) {
       setCurrentStep(currentStep + 1);
       console.log("Current step: " + currentStep);
     }
@@ -59,9 +63,11 @@ export const MainForm = () => {
       case 4:
         return formData.city !== "";
       case 5:
-        return formData.job !== "";
+        return formData.course !== "";
       case 6:
-        return formData.favmovie !== "";
+        return formData.team !== "";
+      case 7:
+        return formData.rate !== "";
       default:
         return true;
     }
@@ -92,12 +98,14 @@ export const MainForm = () => {
       age: "",
       email: "",
       city: "",
-      job: "",
+      course: "",
       team: "",
-      trust: "",
+      rate: "",
     });
     setSubmitted(false);
   };
+
+  const numberOfQuestions = 7;
 
   //Render the form
   return (
@@ -118,30 +126,75 @@ export const MainForm = () => {
             {currentStep !== 0 && (
               <>
                 {currentStep === 1 && (
+                  <>
                   <Name isNameValid={isNameValid} value={formData.name} updateFormData={updateFormData} />
+                  <Progressbar
+              // onUpdateValueChange={onUpdateValueChange}
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
                 )}
+
                 {currentStep === 2 && (
+                  <>
                   <Age value={formData.age} updateFormData={updateFormData} />
+                  <Progressbar
+              // onUpdateValueChange={onUpdateValueChange}
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
                 )}
                 {currentStep === 3 && (
+                  <>
                   <Email
                     value={formData.email}
                     updateFormData={updateFormData}
                   />
+                  <Progressbar
+              // onUpdateValueChange={onUpdateValueChange}
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
                 )}
-                               
                 {currentStep === 4 && (
+                  <>
                   <City value={formData.city} updateFormData={updateFormData} />
+                  <Progressbar
+              // onUpdateValueChange={onUpdateValueChange}
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
                 )}
-                {/*{currentStep === 5 && (
-                  <Trust value={formData.trust} updateFormData={updateFormData} />
+                {currentStep === 5 && (
+                  <>
+                  <Course value={formData.course} updateFormData={updateFormData} />
+                  <Progressbar
+              // onUpdateValueChange={onUpdateValueChange}
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
                 )}
                 {currentStep === 6 && (
-                  <Movie value={formData.movie} updateFormData={updateFormData} />
-                )}*/}
+                  <>
+                  <Team value={formData.team} updateFormData={updateFormData} />
+                  <Progressbar
+              // onUpdateValueChange={onUpdateValueChange}
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
+                )}
+                {currentStep === 7 && (
+                  <>
+                  <Rate value={formData.rate} updateFormData={updateFormData} />
+                  <Progressbar
+              // onUpdateValueChange={onUpdateValueChange}
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
+                )}
                 <div>
                   {currentStep > 1 && <button onClick={prevStep}>Back</button>}
-                  {currentStep < 6 ? (
+                  {currentStep < 7 ? (
                     <button
                       onClick={nextStep}
                       disabled={!validateStep(currentStep)}
@@ -156,7 +209,7 @@ export const MainForm = () => {
                       Submit
                     </button>
                   )}
-                  {currentStep === 6 && (
+                  {currentStep === 7 && (
                     <button onClick={restartSurvey}>Restart</button>
                   )}
                 </div>
