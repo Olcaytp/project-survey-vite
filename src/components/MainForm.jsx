@@ -4,6 +4,8 @@ import "../App.css";
 import { Thanks } from "./Thanks";
 import { Name } from "./Name";
 import { Age } from "./Age";
+import { Email } from "./Email";
+
 export const MainForm = () => {
   // Define state variables
   const [formData, setFormData] = useState({
@@ -17,6 +19,7 @@ export const MainForm = () => {
 
   const [currentStep, setCurrentStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [isNameValid, setIsNameValid] = useState(false);
 
   // Function for handling form data
   const updateFormData = (field, value) => {
@@ -40,7 +43,7 @@ export const MainForm = () => {
   //Function for validating the step
   const validateStep = (step) => {
     switch (step) {
-      case 1: 
+      case 1:
         return formData.name.trim().length >= 3;
       case 2: {
         const age = parseInt(formData.age, 10);
@@ -95,11 +98,11 @@ export const MainForm = () => {
   //Render the form
   return (
     <div>
-    {submitted ? (
-      <Thanks />
-    ) : (
-      <>
-        <div className="button-container">
+      {submitted ? (
+        <Thanks />
+      ) : (
+        <>
+          <div className="button-container">
             {currentStep === 0 && (
               <div>
                 <div className="start-button">
@@ -110,14 +113,18 @@ export const MainForm = () => {
             {currentStep !== 0 && (
               <>
                 {currentStep === 1 && (
-                  <Name value={formData.name} updateFormData={updateFormData} />
+                  <Name isNameValid={isNameValid} value={formData.name} updateFormData={updateFormData} />
                 )}
                 {currentStep === 2 && (
                   <Age value={formData.age} updateFormData={updateFormData} />
                 )}
-                {/*{currentStep === 3 && (
-                  <Email value={formData.email} updateFormData={updateFormData} />
+                {currentStep === 3 && (
+                  <Email
+                    value={formData.email}
+                    updateFormData={updateFormData}
+                  />
                 )}
+                {/*                
                 {currentStep === 4 && (
                   <Potato value={formData.potato} updateFormData={updateFormData} />
                 )}
@@ -130,11 +137,17 @@ export const MainForm = () => {
                 <div>
                   {currentStep > 1 && <button onClick={prevStep}>Back</button>}
                   {currentStep < 6 ? (
-                    <button onClick={nextStep} disabled={!validateStep(currentStep)}>
+                    <button
+                      onClick={nextStep}
+                      disabled={!validateStep(currentStep)}
+                    >
                       Next
                     </button>
                   ) : (
-                    <button onClick={submitForm} disabled={!validateStep(currentStep)}>
+                    <button
+                      onClick={submitForm}
+                      disabled={!validateStep(currentStep)}
+                    >
                       Submit
                     </button>
                   )}
@@ -144,9 +157,9 @@ export const MainForm = () => {
                 </div>
               </>
             )}
-        </div>
-      </>
-    )}
+          </div>
+        </>
+      )}
     </div>
   );
 };
