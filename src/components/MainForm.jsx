@@ -5,6 +5,7 @@ import { Thanks } from "./Thanks";
 import { Name } from "./Name";
 import { Age } from "./Age";
 import { Email } from "./Email";
+import { City } from "./City";
 
 export const MainForm = () => {
   // Define state variables
@@ -14,6 +15,7 @@ export const MainForm = () => {
     email: "",
     city: "",
     job: "",
+    team: "",
     favmovie: "",
   });
 
@@ -30,6 +32,7 @@ export const MainForm = () => {
   const nextStep = () => {
     if (currentStep < 6 && validateStep(currentStep)) {
       setCurrentStep(currentStep + 1);
+      console.log("Current step: " + currentStep);
     }
   };
 
@@ -88,9 +91,10 @@ export const MainForm = () => {
       name: "",
       age: "",
       email: "",
-      potato: "",
+      city: "",
+      job: "",
+      team: "",
       trust: "",
-      movie: "",
     });
     setSubmitted(false);
   };
@@ -105,6 +109,7 @@ export const MainForm = () => {
           <div className="button-container">
             {currentStep === 0 && (
               <div>
+              <h1>Technigo Survey Form </h1>
                 <div className="start-button">
                   <button onClick={startSurvey}>Start survey</button>
                 </div>
@@ -124,11 +129,11 @@ export const MainForm = () => {
                     updateFormData={updateFormData}
                   />
                 )}
-                {/*                
+                               
                 {currentStep === 4 && (
-                  <Potato value={formData.potato} updateFormData={updateFormData} />
+                  <City value={formData.city} updateFormData={updateFormData} />
                 )}
-                {currentStep === 5 && (
+                {/*{currentStep === 5 && (
                   <Trust value={formData.trust} updateFormData={updateFormData} />
                 )}
                 {currentStep === 6 && (
