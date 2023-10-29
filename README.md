@@ -12,6 +12,28 @@ Start by briefly describing the assignment in a sentence or two. Keep it short a
 
 ## Getting Started with the Project
 
+# Image
+<img
+  src="src\assets\1.png"
+  alt="Survey Project"
+  title="Optional title"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
+<img
+  src="src\assets\2.png"
+  alt="Survey Project"
+  title="Optional title"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
+<img
+  src="src\assets\13.png"
+  alt="Survey Project"
+  title="Optional title"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
+<img
+  src="src\assets\4.png"
+  alt="Survey Project"
+  title="Optional title"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
+
 ### Dependency Installation & Startup Development Server
 
 Once cloned, navigate to the project's root directory and this project uses npm (Node Package Manager) to manage its dependencies.

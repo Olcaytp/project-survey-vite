@@ -14,7 +14,7 @@ export const Thanks = ({formData}) => {
         type="button"
         className="link-button"
       >
-        Lets do it one more time
+        One more time
       </button>
       </div>
     );
