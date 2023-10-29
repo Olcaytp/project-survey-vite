@@ -14,22 +14,22 @@ Start by briefly describing the assignment in a sentence or two. Keep it short a
 
 # Image
 <img
-  src="src\assets\1.png"
+  src="src\assets\1.PNG"
   alt="Survey Project"
   title="Optional title"
   style="display: inline-block; margin: 0 auto; max-width: 300px">
 <img
-  src="src\assets\2.png"
+  src="src\assets\2.PNG"
   alt="Survey Project"
   title="Optional title"
   style="display: inline-block; margin: 0 auto; max-width: 300px">
 <img
-  src="src\assets\13.png"
+  src="src\assets\3.PNG"
   alt="Survey Project"
   title="Optional title"
   style="display: inline-block; margin: 0 auto; max-width: 300px">
 <img
-  src="src\assets\4.png"
+  src="src\assets\4.PNG"
   alt="Survey Project"
   title="Optional title"
   style="display: inline-block; margin: 0 auto; max-width: 300px">
