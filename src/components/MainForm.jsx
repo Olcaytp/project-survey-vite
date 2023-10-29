@@ -2,6 +2,14 @@
 import { useState } from "react";
 import "../App.css";
 import { Thanks } from "./Thanks";
+import { Name } from "./Name";
+import { Age } from "./Age";
+import { Email } from "./Email";
+import { City } from "./City";
+import { Course } from "./Course";
+import { Team } from "./Team";
+import { Rate } from "./Rate";
+import { Progressbar } from "./Progressbar";
 
 export const MainForm = () => {
   // Define state variables
@@ -10,12 +18,14 @@ export const MainForm = () => {
     age: "",
     email: "",
     city: "",
-    job: "",
-    favmovie: "",
+    team: "",
+    course: "",
+    rate: "",
   });
 
   const [currentStep, setCurrentStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [isNameValid, setIsNameValid] = useState(false);
 
   // Function for handling form data
   const updateFormData = (field, value) => {
@@ -24,8 +34,9 @@ export const MainForm = () => {
 
   //Function for the next step
   const nextStep = () => {
-    if (currentStep < 6 && validateStep(currentStep)) {
+    if (currentStep < 7 && validateStep(currentStep)) {
       setCurrentStep(currentStep + 1);
+      console.log("Current step: " + currentStep);
     }
   };
 
@@ -52,9 +63,11 @@ export const MainForm = () => {
       case 4:
         return formData.city !== "";
       case 5:
-        return formData.job !== "";
+        return formData.course !== "";
       case 6:
-        return formData.favmovie !== "";
+        return formData.team !== "";
+      case 7:
+        return formData.rate !== "";
       default:
         return true;
     }
@@ -62,10 +75,6 @@ export const MainForm = () => {
 
   //Function for handling form submission
   const submitForm = () => {
-    // Format the data and show an alert message with it
-    const formattedData = `Hello, your name is ${formData.name}. You are ${formData.age} years old, and you live in ${formData.city}. You work as a ${formData.job}, and your favorite movie is "${formData.favmovie}". We can reach you at ${formData.email}.`;
-    const alertMessage = `You have submitted the form with the following data: ${formattedData}`;
-    alert(alertMessage);
 
     //Submit the form
     setSubmitted(true);
@@ -84,31 +93,119 @@ export const MainForm = () => {
       name: "",
       age: "",
       email: "",
-      potato: "",
-      trust: "",
-      movie: "",
+      city: "",
+      course: "",
+      team: "",
+      rate: "",
     });
     setSubmitted(false);
   };
 
+  const numberOfQuestions = 7;
+
   //Render the form
   return (
     <div>
-    {submitted ? (
-      <Thanks />
-    ) : (
-      <>
-        <div className="button-container">
+      {!submitted ? (
+        <>
+          <div className="button-container">
             {currentStep === 0 && (
               <div>
+              <h1>Technigo Survey Form </h1>
                 <div className="start-button">
                   <button onClick={startSurvey}>Start survey</button>
                 </div>
               </div>
             )}
-        </div>
-      </>
-    )}
+            {currentStep !== 0 && (
+              <>
+                {currentStep === 1 && (
+                  <>
+                  <Name isNameValid={isNameValid} value={formData.name} updateFormData={updateFormData} />
+                  <Progressbar
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
+                )}
+
+                {currentStep === 2 && (
+                  <>
+                  <Age value={formData.age} updateFormData={updateFormData} />
+                  <Progressbar
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
+                )}
+                {currentStep === 3 && (
+                  <>
+                  <Email
+                    value={formData.email}
+                    updateFormData={updateFormData}
+                  />
+                  <Progressbar
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
+                )}
+                {currentStep === 4 && (
+                  <>
+                  <City value={formData.city} updateFormData={updateFormData} />
+                  <Progressbar
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
+                )}
+                {currentStep === 5 && (
+                  <>
+                  <Course value={formData.course} updateFormData={updateFormData} />
+                  <Progressbar
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
+                )}
+                {currentStep === 6 && (
+                  <>
+                  <Team value={formData.team} updateFormData={updateFormData} />
+                  <Progressbar
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
+                )}
+                {currentStep === 7 && (
+                  <>
+                  <Rate value={formData.rate} updateFormData={updateFormData} />
+                  <Progressbar
+              done={(currentStep / numberOfQuestions) * 100}
+            />
+                  </>
+                )}
+                <div>
+                  {currentStep > 1 && <button onClick={prevStep}>Back</button>}
+                  {currentStep < 7 ? (
+                    <button
+                      onClick={nextStep}
+                      disabled={!validateStep(currentStep)}
+                    >
+                      Next
+                    </button>
+                  ) : (
+                    <button
+                      onClick={submitForm}
+                      disabled={!validateStep(currentStep)}
+                    >
+                      Submit
+                    </button>
+                  )}
+                  {currentStep === 7 && (
+                    <button onClick={restartSurvey}>Restart</button>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
+        </>
+      ) : (
+        <Thanks formData={formData} />)}
     </div>
   );
 };
