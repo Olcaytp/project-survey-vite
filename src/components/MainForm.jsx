@@ -75,10 +75,6 @@ export const MainForm = () => {
 
   //Function for handling form submission
   const submitForm = () => {
-    // Format the data and show an alert message with it
-    const formattedData = `Hello, your name is ${formData.name}. You are ${formData.age} years old, and you live in ${formData.city}. You work as a ${formData.job}, and your favorite movie is "${formData.favmovie}". We can reach you at ${formData.email}.`;
-    const alertMessage = `You have submitted the form with the following data: ${formattedData}`;
-    alert(alertMessage);
 
     //Submit the form
     setSubmitted(true);
@@ -110,9 +106,7 @@ export const MainForm = () => {
   //Render the form
   return (
     <div>
-      {submitted ? (
-        <Thanks />
-      ) : (
+      {!submitted ? (
         <>
           <div className="button-container">
             {currentStep === 0 && (
@@ -129,7 +123,6 @@ export const MainForm = () => {
                   <>
                   <Name isNameValid={isNameValid} value={formData.name} updateFormData={updateFormData} />
                   <Progressbar
-              // onUpdateValueChange={onUpdateValueChange}
               done={(currentStep / numberOfQuestions) * 100}
             />
                   </>
@@ -139,7 +132,6 @@ export const MainForm = () => {
                   <>
                   <Age value={formData.age} updateFormData={updateFormData} />
                   <Progressbar
-              // onUpdateValueChange={onUpdateValueChange}
               done={(currentStep / numberOfQuestions) * 100}
             />
                   </>
@@ -151,7 +143,6 @@ export const MainForm = () => {
                     updateFormData={updateFormData}
                   />
                   <Progressbar
-              // onUpdateValueChange={onUpdateValueChange}
               done={(currentStep / numberOfQuestions) * 100}
             />
                   </>
@@ -160,7 +151,6 @@ export const MainForm = () => {
                   <>
                   <City value={formData.city} updateFormData={updateFormData} />
                   <Progressbar
-              // onUpdateValueChange={onUpdateValueChange}
               done={(currentStep / numberOfQuestions) * 100}
             />
                   </>
@@ -169,7 +159,6 @@ export const MainForm = () => {
                   <>
                   <Course value={formData.course} updateFormData={updateFormData} />
                   <Progressbar
-              // onUpdateValueChange={onUpdateValueChange}
               done={(currentStep / numberOfQuestions) * 100}
             />
                   </>
@@ -178,7 +167,6 @@ export const MainForm = () => {
                   <>
                   <Team value={formData.team} updateFormData={updateFormData} />
                   <Progressbar
-              // onUpdateValueChange={onUpdateValueChange}
               done={(currentStep / numberOfQuestions) * 100}
             />
                   </>
@@ -187,7 +175,6 @@ export const MainForm = () => {
                   <>
                   <Rate value={formData.rate} updateFormData={updateFormData} />
                   <Progressbar
-              // onUpdateValueChange={onUpdateValueChange}
               done={(currentStep / numberOfQuestions) * 100}
             />
                   </>
@@ -217,7 +204,8 @@ export const MainForm = () => {
             )}
           </div>
         </>
-      )}
+      ) : (
+        <Thanks formData={formData} />)}
     </div>
   );
 };

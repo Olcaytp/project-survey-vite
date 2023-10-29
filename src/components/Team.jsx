@@ -7,7 +7,7 @@ export const Team = ({ updateFormData, value }) => {
         <label className="team-label">Select the team that you participated?</label>
         <select className="team-select" value={value} onChange={team}>
         <option value=''>Select a team</option>
-        <option value='Team A'>Team Banana</option>
+        <option value='Team Banana'>Team Banana</option>
               <option value='Team Grape'>Team Grape</option>
               <option value='Team Watermelon'>Team Watermelon</option>
               <option value='Team Pineapple'>Team Pineapple</option>

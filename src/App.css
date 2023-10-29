@@ -133,3 +133,15 @@ body {
     border: 1px solid black;
     background-color: rgba(0, 0, 0, 0.5);
   }
+
+  .summary-text {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 500px;
+  }
+  
+  .summary-text p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
