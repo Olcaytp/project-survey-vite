@@ -6,9 +6,7 @@
 
 # Survey Project
 
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+This survey project is a collaborative effort by Preeti and Olcay. The project allows users to complete a survey in various steps. Each step of the survey is represented by a different component, and users can progress through these steps to fill out the survey.
 
 ## Getting Started with the Project
 
@@ -50,7 +48,7 @@ Describe how you approached to problem, and what tools and techniques you used t
 
 ### View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+deployed link: https://preeti-olcay-survey-technigo.netlify.app/
 
 ## Instructions
 
