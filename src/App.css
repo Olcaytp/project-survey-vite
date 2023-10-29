@@ -47,7 +47,7 @@ body {
   .select,
   .course-select,
   .team-select {
-    width: 100%;
+    width: 92%;
     padding: 10px;
     border: 1px solid #3498db;
     border-radius: 5px;
@@ -124,6 +124,9 @@ body {
 
   .progress-bar {
     background-color: #efb031;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .progress-container {
